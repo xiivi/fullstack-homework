@@ -9,18 +9,22 @@ Use console.log() to write the proper output to the command line.
 
 **/
 
-const fizzbuzz = () => {
-  for( i = 1; i <= 100; i++){
-    var thing_to_say = i 
-    if(i % 3 == 0){
-      thing_to_say="Fizz!"
-    }else if(i % 5 == 0){
-      thing_to_say="Buzz!"
-    } else if( i % 5 == 0 && i % 3 == 0){
-      thing_to_say="FizzBuzz!"
-    }
+const fizzBuzz = () => {
 
-    console.log(thing_to_say)
+  for(i = 1; i <= 100; i++){
+    
+    if(i % 3 === 0 && i % 5 === 0){ // divisible by 3 & 5
+      console.log("FizzBuzz!");
+    } 
+    else if(i % 3 === 0){ // divisible by 3
+      console.log("Buzz!");
+    } 
+    else if(i % 5 === 0){ // divisible by 5
+      console.log("Fizz!");
+    }
+    else{ // not-divisible
+      console.log(i);
+    }
   }
 };
 
@@ -41,3 +45,12 @@ fizzbuzz();
 // 14
 // fizzbuzz
 // ...
+
+// Coding in Javascript
+// Use strict equality (===) and not (==)
+// To declare variables, use let and const. Don't use var
+// 
+
+// Style guide 
+// 1. ESlint 
+// 2. AirBnb Javascript Style Guide <-- Used in this class
