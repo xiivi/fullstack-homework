@@ -31,6 +31,8 @@ const fizzBuzz = () => {
 };
 
 fizzBuzz();
+
+// Expected Outputs: 
 // 1
 // 2
 // fizz
@@ -47,12 +49,4 @@ fizzBuzz();
 // 14
 // fizzbuzz
 // ...
-
-// Coding in Javascript
-// Use strict equality (===) and not (==)
-// To declare variables, use let and const. Don't use var
-// 
-
-// Style guide 
-// 1. ESlint 
-// 2. AirBnb Javascript Style Guide <-- Used in this class
+// ...
