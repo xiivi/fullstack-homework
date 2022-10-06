@@ -10,25 +10,27 @@ Use console.log() to write the proper output to the command line.
 **/
 
 const fizzBuzz = () => {
-
   for(i = 1; i <= 100; i++){
     
-    if(i % 3 === 0 && i % 5 === 0){ // divisible by 3 & 5
+    if(i % 3 === 0 && i % 5 === 0) { 
       console.log("FizzBuzz!");
     } 
-    else if(i % 3 === 0){ // divisible by 3
+
+    if(i % 3 === 0) {
       console.log("Buzz!");
     } 
-    else if(i % 5 === 0){ // divisible by 5
+
+    if(i % 5 === 0) { 
       console.log("Fizz!");
-    }
-    else{ // not-divisible
+    } 
+
+    if(i % 3 !== 0 && i % 5 !== 0) { 
       console.log(i);
     }
   }
 };
 
-fizzbuzz();
+fizzBuzz();
 // 1
 // 2
 // fizz
