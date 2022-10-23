@@ -14,6 +14,43 @@
     <section class="container border rounded bg-light w-50 mx-auto mt-5 p-3">
       <h1 class="mt-2 mb-4">REST Countries</h1>
       <ol id="results"></ol>
+      
     </section>
   </body>
+
+  <script>
+    window.onload = () => {
+      fetchData();
+      return;
+    }
+
+    function fetchData(){
+      const url = 'https://restcountries.com/v3.1/all';
+
+      fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((myJson) =>{
+        let html = '';
+        let list = [];
+        myJson.forEach(state => {
+          let stateName = JSON.parse(JSON.stringify(state.name.common));
+          let statePopulation = JSON.parse(JSON.stringify(state.population));
+          let stateObject = {stateName, statePopulation};
+          list.push(stateObject);
+
+          let listItem = `<li>${stateName} - ${statePopulation}</li>`;
+
+          html += listItem;
+        })
+
+        document.getElementById("results").innerHTML = html;
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    }
+
+  </script>
 </html>

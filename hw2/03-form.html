@@ -14,6 +14,82 @@
   <body class="bg-dark">
     <form class="bg-light border rounded w-50 mx-auto mt-5 p-3">
       <h1 class="mt-2 mb-4">Contact Form</h1>
+      <br>
+      <h6>Name *</h6>
+      <input type="text" class="form-control" aria-label="name" id="name" aria-describedby="basic-addon1">
+      <br>
+      <h6>Email *</h6>
+      <input type="text" class="form-control" aria-label="email" id="email" aria-describedby="basic-addon1">
+      <br>
+      <h6>Submit your message:</h6>
+      <textarea class="form-control" aria-label="msgsubmission" id="feedback"></textarea>
+
+      <br>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="newsletterCheckBox" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+          Sign up the newsletter
+        </label>
+      </div>
+
+      <br>
+      <button type="button" class="btn btn-primary btn-lg btn-block" style="width:49%" onclick="submitForm()">Submit</button>
+      <button type="button" class="btn btn-secondary btn-lg btn-block" style="width:49%" onclick="resetForm()">Reset</button>
+      </div>
+      <br>
+      <br>
     </form>
   </body>
+
+  <script>
+
+    function resetForm(){
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("feedback").value = "";
+      document.getElementById("newsletterCheckBox").checked = true;
+    }
+
+    function submitForm(){
+      logHeader();
+      logName();
+      logEmail();
+      logFeedback();
+      logNewsletter();
+    }
+
+    function logHeader(){
+      console.log("========= Form Submission =========");
+    }
+
+    function logName(){
+      var userName = document.getElementById('name').value;
+      console.log("Name: " + userName);
+    }
+
+    function logEmail(){
+      var userEmail = document.getElementById('email').value;
+      console.log("Email: " + userEmail);
+    }
+
+    function logFeedback(){
+      var userFeedback = document.getElementById('feedback').value;
+      console.log("Feedback: " + userFeedback);
+    }
+
+    function logNewsletter(){
+      var checkBox = document.getElementById('newsletterCheckBox').checked;
+      var userNewsletterDecision;
+
+      if(checkBox === true){
+        userNewsletterDecision = "Yes, I would like to join the newsletter."
+      } else {
+        userNewsletterDecision = "No, thank you."
+      }
+      console.log("Newsletter: " + userNewsletterDecision);
+    }
+
+  </script>
 </html>
+
+

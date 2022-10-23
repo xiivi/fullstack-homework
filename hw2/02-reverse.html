@@ -14,17 +14,43 @@
     <main class="bg-light border rounded w-50 mx-auto mt-5 p-3">
       <h1 class="mt-2 mb-4">Reverse</h1>
       <div class="form-group w-50">
+        <!-- Input label -->
         <label for="input">Enter an 8-digit number: </label>
         <input type="number" class="form-control" id="input" required />
       </div>
       <div class="form-group mt-4">
+        <!-- Submit Button -->
         <input
           type="submit"
           class="btn btn-primary"
           value="Reverse"
           id="reverse"
+          onclick="getReversedResults()"
         />
+      </div>
+      <div>
+        <br>
+        <text id="result"></text>
       </div>
     </main>
   </body>
+    <script>
+      function getReversedResults(){
+        var input = document.getElementById('input').value;
+        
+        // Check if input is 8 digits long
+        if(input.length !== 8){
+          var errorMsg = "Error: Please input an 8-digit number";
+
+          document.getElementById("result").innerHTML = errorMsg.fontcolor("red");
+
+        // Reverse input
+        } else {
+          var reversedString = input.split("").reverse("").join("");
+          var resultString = input + " --> " + reversedString;
+
+          document.getElementById("result").innerHTML = resultString.fontcolor("green");
+        }
+      }
+    </script>
 </html>
