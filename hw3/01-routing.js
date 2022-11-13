@@ -24,6 +24,9 @@ const server = http.createServer((req, res) => {
     'other',
   ];
 
+  // accesses CONST routes list and return an html element
+  // <a></a> turns the element content into a hyperlink. 
+  // href specifies the link which the hyperlink goes to
   let getRoutes = () => {
     let result = '';
 
@@ -43,7 +46,67 @@ const server = http.createServer((req, res) => {
     res.end();
   }
 
-  // Add your code here
+  else if (req.url === '/welcome') {
+    let routeResults = getRoutes();
+
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(`<h1>Welcome to HW #3!</h1>`);
+    res.write(`<ul> ${routeResults} </ul>`);
+    res.end();
+  }
+
+  else if (req.url === '/redirect') {
+    res.writeHead(302, { Location: "/redirected" });
+    res.end();
+  }
+
+  else if (req.url === '/redirected') {
+    let routeResults = getRoutes();
+
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(`<h1>Redirected to /redirected</h1>`);
+    res.write(`<ul> ${routeResults} </ul>`);
+    res.end();
+  }
+
+  else if (req.url === '/cache') {
+    let routeResults = getRoutes();
+
+    res.writeHead(200, { 'Content-Type': 'text/html', 'Cache-control': 'public, max-age=86400'});
+    res.write(`<h1>This resource was cached</h1>`);
+    res.write(`<ul> ${routeResults} </ul>`);
+    res.end();
+  }
+
+  else if (req.url === '/cookie') {
+    let routeResults = getRoutes();
+
+    res.writeHead(200, { 'Content-Type': 'text/html', 'Set-Cookie':'hello=world'});
+    res.write(`<h1>cookies... yummm</h1>`);
+    res.write(`<ul> ${routeResults} </ul>`);
+    res.end();
+  }
+
+  else if (req.url === '/check-cookies') {
+    let routeResults = getRoutes();
+    
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+
+    if(req.headers.cookie.indexOf("hello=") !== -1){
+      res.write(`<h2>yes</h2>`);
+    } else {
+      res.write(`<h2>No</h2>`);
+    }
+    res.end();
+  }
+
+  else {
+    res.writeHead(404, {'Content-Type': 'text/html'});
+    res.write(`<h2>Error 404 - Page not Found</h2>`);
+    res.end();
+  }
+
+
 });
 
 server.listen(port, () => {

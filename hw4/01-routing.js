@@ -34,15 +34,53 @@ let getRoutes = () => {
 app.get('/', (req, res) => {
   let routeResults = getRoutes();
 
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write(`<h1>Exercise 04</h1>`);
-  res.write(`<ul> ${routeResults} </ul>`);
+  res.status(200);
+  res.set({'Content-Type': 'text/html'});
+  res.send(`<h1>Exercise 04 - Root Page</h1>
+            <ul> ${routeResults} </ul>`);
+  //res.send(`<ul> ${routeResults} </ul>`);
   res.end();
 });
 
-app.get('/welcome', (req, res) => {});
+app.get('/welcome', (req, res) => {
 
-// Add your code here
+  res.send('GET request to the welcome page');
+});
+
+app.get('/redirect', (req, res, next) => {
+
+  console.log("Redirecting to /redirect");
+  res.status(302);
+  res.redirect('/redirected');
+  next();
+})
+
+app.get('/redirected', (req, res) => {
+
+  res.status(200);
+  res.set({'Content-Type': 'text/html'});
+  res.send("ur in /redirected");
+  res.end();
+})
+
+app.get('/cache', (req, res, next) => {
+  let MAXAGE = 86400;
+  res.set('Cache-Control', `public, max-age=${MAXAGE}`)
+  res.send("this resource was cached btw");
+  res.end();
+  next();
+})
+
+app.get('/cookie', (req, res, next) =>{
+  res.set('Cookie', `hello=world`)
+  res.send("yum COOKIES!!!");
+  res.end();
+  next();
+})
+
+app.get('*', (req, res, next) => {
+  res.send("404 error. where do u think ur going???", 404); 
+})
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
